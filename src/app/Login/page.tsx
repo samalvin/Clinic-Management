@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signInWithEmail } from "@/app/lib/actions";
 
 const LoginPage = () => {
+  
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,62 +73,67 @@ const LoginPage = () => {
     <div style={styles.loginPage}>
       <h2 style={styles.title}>Login</h2>
       {error && <div style={styles.error}>{error}</div>}
+      <form action={() => signInWithEmail({ email, password })}>
+        <div style={styles.formGroup}>
+          <input
+            style={styles.input}
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+          />
+        </div>
 
-      <div style={styles.formGroup}>
-        <input
-          style={styles.input}
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-      </div>
+        <div style={styles.formGroup}>
+          <input
+            style={styles.input}
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+        </div>
 
-      <div style={styles.formGroup}>
-        <input
-          style={styles.input}
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-      </div>
-
-      <div style={styles.formGroup}>
-        <select
-          style={styles.select}
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-        >
-          <option value="Admin">Admin</option>
-          <option value="Doctor">Doctor</option>
-          <option value="Patient">Patient</option>
-        </select>
-      </div>
-
-      <button style={styles.button} onClick={handleLogin}>Login</button>
-
-      <div style={styles.forgotPassword}>
-      <a 
-          href="#" 
-          onClick={routeToForgotPassword} 
-          style={styles.passwordLink}
-        >
-          Forgot Password?
-        </a>
-      </div>
-
-      <div style={styles.registerLink}>
-        <p style={styles.registerText}>
-          Don't have an account?{" "}
-          <button
-            style={styles.registerButton}
-            onClick={handleRegisterRedirect}
+        <div style={styles.formGroup}>
+          <select
+            style={styles.select}
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
           >
-            Register
-          </button>
-        </p>
-      </div>
+            <option value="Admin">Admin</option>
+            <option value="Doctor">Doctor</option>
+            <option value="Patient">Patient</option>
+          </select>
+        </div>
+
+        <button type="submit" style={styles.button}
+          // onClick={handleLogin}
+        >
+          Login
+        </button>
+
+        <div style={styles.forgotPassword}>
+        <a 
+            href="#" 
+            onClick={routeToForgotPassword} 
+            style={styles.passwordLink}
+          >
+            Forgot Password?
+          </a>
+        </div>
+
+        <div style={styles.registerLink}>
+          <p style={styles.registerText}>
+            Don't have an account?{" "}
+            <button
+              style={styles.registerButton}
+              onClick={handleRegisterRedirect}
+            >
+              Register
+            </button>
+          </p>
+        </div>
+      </form>
     </div>
   );
 };

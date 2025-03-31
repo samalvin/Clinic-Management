@@ -20,7 +20,7 @@ const HomePage = () => {
 
   const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
-    .setProject("67cfcdd3002a87ebea80");
+    .setProject("clinicmanagement");
 
   const databases = new Databases(client);
 

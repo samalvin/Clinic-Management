@@ -2,13 +2,17 @@
 import { getLoggedInUser } from "@/lib/server/appwrite";
 import { redirect } from "next/navigation";
 
-const Home = async () => {
+const Settings = async () => {
    const user = await getLoggedInUser();
-   console.log
+   console.log({user})
   if (!user) redirect("/Login");
 
-  redirect("/Dashboard");
-  // return null;
+  return (
+    <>
+      <h1>Settings</h1>
+      <p>Settings page</p>
+    </>
+  )
 }
 
-export default Home
+export default Settings

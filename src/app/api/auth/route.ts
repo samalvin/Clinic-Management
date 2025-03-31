@@ -5,7 +5,7 @@ import { Client, Account } from 'appwrite';
 // Set up Appwrite client and account service
 const client = new Client()
   .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject("67cfcdd3002a87ebea80");
+  .setProject("clinicmanagement");
 
 const account = new Account(client);
 
